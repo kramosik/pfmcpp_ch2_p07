@@ -40,8 +40,8 @@ struct FloatType {
 
     float divide(float lhs, float rhs)
     {
-        if (rhs == 0) {
-            throw std::runtime_error {"divide by zero error"};
+        if (rhs == 0) { FIXME curly braces go on their own line
+            throw std::runtime_error {"divide by zero error"};  FIXME no exceptions in audio plugins allowed! issue a warning
         }
         return lhs / rhs;
     }
@@ -56,8 +56,8 @@ struct DoubleType {
 
     double divide(double lhs, double rhs)
     {
-        if (rhs == 0) {
-            throw std::runtime_error {"divide by zero error"};
+        if (rhs == 0) { FIXME: curly braces go on their own lines
+            throw std::runtime_error {"divide by zero error"}; FIXME no exceptions in audio plugins allowed! issue a warning
         }
         return lhs / rhs;
     }
@@ -72,10 +72,10 @@ struct IntType {
 
     int divide(int lhs, int rhs)
     {
-        if (rhs == 0) {
-            throw std::runtime_error {"divide by zero error"};
+        if (rhs == 0) { FIXME curly braces go on their own line
+            throw std::runtime_error {"divide by zero error"}; FIXME no exceptions in audio plugins allowed! issue a warning
         }
-        return lhs / rhs;
+        return lhs / rhs; FIXME divide-by-integer-zero causes abort to be called.  don't perform division if rhs == 0
     }
 };
 
@@ -93,9 +93,9 @@ int main()
     std::cout << "result of it.add(): " << it.add(100, 3) << "\n";
 
     std::cout << "result of it.divide(): ";
-    try {
+    try { FIXME no exceptions in audio plugins allowed!
         std::cout << it.divide(1, 0) << "\n";
-    } catch (std::runtime_error& err) {
+    } catch (std::runtime_error& err) { FIXME no exceptions in audio plugins allowed!
         std::cout << err.what() << "\n";
     }
 }
