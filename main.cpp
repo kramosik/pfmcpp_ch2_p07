@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdexcept>
+#include <limits>
 
 /*
  Chapter 2 Part 7
@@ -40,8 +40,10 @@ struct FloatType {
 
     float divide(float lhs, float rhs)
     {
-        if (rhs == 0) { FIXME curly braces go on their own line
-            throw std::runtime_error {"divide by zero error"};  FIXME no exceptions in audio plugins allowed! issue a warning
+        if (rhs == 0)
+        {
+            std::cerr << "divide by zero error\n";
+            return std::numeric_limits<float>::infinity();
         }
         return lhs / rhs;
     }
@@ -56,8 +58,10 @@ struct DoubleType {
 
     double divide(double lhs, double rhs)
     {
-        if (rhs == 0) { FIXME: curly braces go on their own lines
-            throw std::runtime_error {"divide by zero error"}; FIXME no exceptions in audio plugins allowed! issue a warning
+        if (rhs == 0)
+        {
+            std::cerr << "divide by zero error\n";
+            return std::numeric_limits<double>::infinity();
         }
         return lhs / rhs;
     }
@@ -72,10 +76,12 @@ struct IntType {
 
     int divide(int lhs, int rhs)
     {
-        if (rhs == 0) { FIXME curly braces go on their own line
-            throw std::runtime_error {"divide by zero error"}; FIXME no exceptions in audio plugins allowed! issue a warning
+        if (rhs == 0)
+        {
+            std::cerr << "divide by zero error\n";
+            return std::numeric_limits<int>::max();
         }
-        return lhs / rhs; FIXME divide-by-integer-zero causes abort to be called.  don't perform division if rhs == 0
+        return lhs / rhs;
     }
 };
 
@@ -92,10 +98,7 @@ int main()
     std::cout << "result of dt.divide(): " << dt.divide(1.0, 3.0) << "\n";
     std::cout << "result of it.add(): " << it.add(100, 3) << "\n";
 
-    std::cout << "result of it.divide(): ";
-    try { FIXME no exceptions in audio plugins allowed!
-        std::cout << it.divide(1, 0) << "\n";
-    } catch (std::runtime_error& err) { FIXME no exceptions in audio plugins allowed!
-        std::cout << err.what() << "\n";
-    }
+    std::cout << "result of ft.divide(): " << ft.divide(1, 0) << '\n';
+    std::cout << "result of dt.divide(): " << dt.divide(1, 0) << '\n';
+    std::cout << "result of it.divide(): " << it.divide(1, 0) << '\n';
 }
