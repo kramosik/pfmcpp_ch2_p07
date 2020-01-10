@@ -42,8 +42,7 @@ struct FloatType {
     {
         if (rhs == 0)
         {
-            std::cerr << "divide by zero error\n"; FIXME don't error, just std::cout a warning.  
-            return std::numeric_limits<float>::infinity(); FIXME it's perfectly legal to divide floats by 0
+            std::cout << "divide by zero\n";
         }
         return lhs / rhs;
     }
@@ -60,8 +59,7 @@ struct DoubleType {
     {
         if (rhs == 0)
         {
-            std::cerr << "divide by zero error\n"; FIXME don't error, just std::cout a warning. 
-            return std::numeric_limits<double>::infinity();  FIXME it's perfectly legal to divide doubles by 0
+            std::cout << "divide by zero\n";
         }
         return lhs / rhs;
     }
@@ -79,7 +77,7 @@ struct IntType {
         if (rhs == 0)
         {
             std::cerr << "divide by zero error\n";
-            return std::numeric_limits<int>::max(); INFO we could debate for hours what is the proper return value for this case.  
+            return std::numeric_limits<int>::max(); // INFO we could debate for hours what is the proper return value for this case.  
         }
         return lhs / rhs;
     }
