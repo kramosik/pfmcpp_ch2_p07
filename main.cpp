@@ -40,7 +40,7 @@ struct FloatType {
 
     float divide(float lhs, float rhs)
     {
-        if (rhs == 0)
+        if (rhs == 0) // only the exact value of 0 will cause problems
         {
             std::cout << "divide by zero\n";
         }
