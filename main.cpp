@@ -95,7 +95,7 @@ struct FloatType
     FloatType& divide(const DoubleType& rhs);
     FloatType& divide(const IntType& rhs);
 
-    float* value;
+    float* value; FIXME this needs a default value of nullptr!
 };
 struct DoubleType
 {
@@ -121,7 +121,7 @@ struct DoubleType
     DoubleType& divide(const DoubleType& rhs);
     DoubleType& divide(const IntType& rhs);
 
-    double* value;
+    double* value; FIXME this needs a default value of nullptr!
 };
 struct IntType
 {
@@ -147,7 +147,7 @@ struct IntType
     IntType& divide(const DoubleType& rhs);
     IntType& divide(const IntType& rhs);
 
-    int* value;
+    int* value; FIXME this needs a default value of nullptr!
 };
 
 FloatType::FloatType(const float& f) { value = new float(f); }
