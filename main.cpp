@@ -22,7 +22,7 @@ struct A
 
 struct HeapA
 {
-    explicit HeapA(A& a_) { a = new A(a_); } //FIXME since you're copying, you should pass by const ref, not ref.
+    explicit HeapA(const A& a_) { a = new A(a_); }
     ~HeapA() { delete a; }
     A* a;
 };
@@ -95,7 +95,7 @@ struct FloatType
     FloatType& divide(const DoubleType& rhs);
     FloatType& divide(const IntType& rhs);
 
-    float* value; FIXME this needs a default value of nullptr!
+    float* value = nullptr;
 };
 struct DoubleType
 {
@@ -121,7 +121,7 @@ struct DoubleType
     DoubleType& divide(const DoubleType& rhs);
     DoubleType& divide(const IntType& rhs);
 
-    double* value; FIXME this needs a default value of nullptr!
+    double* value = nullptr;
 };
 struct IntType
 {
@@ -147,7 +147,7 @@ struct IntType
     IntType& divide(const DoubleType& rhs);
     IntType& divide(const IntType& rhs);
 
-    int* value; FIXME this needs a default value of nullptr!
+    int* value = nullptr;
 };
 
 FloatType::FloatType(const float& f) { value = new float(f); }
@@ -272,7 +272,7 @@ FloatType& FloatType::multiply(const IntType& rhs)
 
 FloatType& FloatType::divide(const float& rhs)
 {
-    if (rhs == 0) FIXME make the 0 a 0.f
+    if (rhs == 0.f)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -288,7 +288,7 @@ FloatType& FloatType::divide(const FloatType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.f
+    if (*rhs.value == 0.f)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -304,7 +304,7 @@ FloatType& FloatType::divide(const DoubleType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.0
+    if (*rhs.value == 0.0)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -451,7 +451,7 @@ DoubleType& DoubleType::multiply(const IntType& rhs)
 
 DoubleType& DoubleType::divide(const double& rhs)
 {
-    if (rhs == 0) FIXME make the 0 a 0.0
+    if (rhs == 0.0)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -467,7 +467,7 @@ DoubleType& DoubleType::divide(const FloatType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.f
+    if (*rhs.value == 0.f)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -483,7 +483,7 @@ DoubleType& DoubleType::divide(const DoubleType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.0
+    if (*rhs.value == 0.0)
     {
         std::cout << "divide by zero\n";
         return *this;
@@ -649,7 +649,7 @@ IntType& IntType::divide(const FloatType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.f
+    if (*rhs.value == 0.f)
     {
         std::cerr << "divide by zero error\n";
         *value = std::numeric_limits<int>::max();
@@ -668,7 +668,7 @@ IntType& IntType::divide(const DoubleType& rhs)
         std::cout << "value null ptr\n";
         return *this;
     }
-    if (*rhs.value == 0) FIXME make the 0 a 0.0
+    if (*rhs.value == 0.0)
     {
         std::cerr << "divide by zero error\n";
         *value = std::numeric_limits<int>::max();
